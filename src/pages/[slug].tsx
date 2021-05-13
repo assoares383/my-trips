@@ -1,15 +1,16 @@
+import { GetStaticProps } from "next";
 import client from "graphql/client";
-import { GET_PAGES } from "graphql/queries";
+import { GET_PAGES, GET_PAGE_BY_SLUG } from "graphql/queries";
 import { useRouter } from "next/dist/client/router";
-import PageTemplate from "templates/Pages";
+import PageTemplate, { PageTemplatesProps } from "templates/Pages";
 
-export default function AboutPage() {
+export default function Page({ heading, body }: PageTemplatesProps) {
     const router = useRouter();
 
     // retorna um loading, qualquer coisa enquanto esta sendo criado
     if (router.isFallback) return null;
 
-    return <PageTemplate />;
+    return <PageTemplate heading={heading} body={body} />;
 }
 
 export async function getStaticPaths() {
@@ -22,11 +23,20 @@ export async function getStaticPaths() {
     return { paths, fallback: true };
 }
 
-// export const getStaticProps = async () => {
-//     return {
-//         props: {},
-//     };
-// };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+    const { page } = await client.request(GET_PAGE_BY_SLUG, {
+        slug: `${params?.slug}`,
+    });
+
+    if (!page) return { notFound: true };
+
+    return {
+        props: {
+            heading: page.heading,
+            body: page.body,
+        },
+    };
+};
 
 // getStaticPaths => serve para gerar as urls em build time /about, /trip/montreal
 // getStaticProps => serve para buscar dados da pagina (props) - build time - estatico
