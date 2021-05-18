@@ -2,7 +2,7 @@ export default {
     openGraph: {
         type: "website",
         locale: "en_US",
-        url: "http://tcode.com.br",
+        url: "https://my-trips-liard.vercel.app/",
         site_name: "My Trips",
     },
     twitter: {
