@@ -13,7 +13,7 @@ function App({ Component, pageProps }: AppProps) {
             <Head>
                 <meta
                     name="google-site-verification"
-                    content="googlea4164b2086d7edb7"
+                    content="MpiTyE6qaBIkWjNBvNosaI1bgv3V4IVnlQg9yTvWxa0"
                 />
                 <link rel="shortcut icon" href="/images/icon-512.png" />
                 <link rel="apple-touch-icon" href="/images/icon-512.png" />
