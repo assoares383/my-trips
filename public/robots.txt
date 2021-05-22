@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://my-trips-liard.vercel.app
+
+# Sitemaps
+Sitemap: https://my-trips-liard.vercel.app/sitemap.xml
